@@ -61,7 +61,7 @@ define(function(require) {
     var gamestate = {
 
         chapter:0,
-        section:0,
+        section:2,
         puzzle:0,
         shares:0
 
@@ -82,7 +82,7 @@ define(function(require) {
 
         'setPuzzle1', //section 1
         'setPuzzle2', //section 2
-        'setPuzzle3', //section 3
+        'setPuzzleBoxes', //section 3
         'none'
 
     ];
@@ -350,6 +350,27 @@ define(function(require) {
 
             });
 
+        },
+
+        puzzleBoxesLogic: function(){
+
+            console.log('settingPuzzleBoxLogic');
+            $('#puzzlebox1Button').click(function(){
+                console.log('hi')
+                $('#PuzzleBox1').toggleClass('hide').toggleClass('show');
+                return false;
+            });
+
+            $('#puzzlebox2Button').click(function(){
+                $('#PuzzleBox2').toggleClass('hide').toggleClass('show');
+                return false;
+            });
+
+            $('#puzzlebox3Button').click(function(){
+                $('#PuzzleBox3').toggleClass('hide').toggleClass('show');
+                return false;
+            });
+
         }
 
 
@@ -377,6 +398,7 @@ define(function(require) {
     bb.on('sectionend',_.bind(game.loadNextSection,game));
     bb.on('setPuzzle1',_.bind(game.puzzle1Logic,game));
     bb.on('setPuzzle2',_.bind(game.puzzle2Logic,game));
+    bb.on('setPuzzleBoxes',_.bind(game.puzzleBoxesLogic,game));
     bb.on('startSharing',_.bind(function(){
 
         game.time.addToList('sharing', _.bind(sharesmodel.update_shares,sharesmodel),default_sharing_interval);

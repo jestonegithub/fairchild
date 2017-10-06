@@ -19,3 +19,4 @@ define(function (require) {
     return {Section1View:Section1View}
 
 });
+
